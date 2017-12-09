@@ -1,0 +1,18 @@
+{
+	"gdn": {
+		"href_start": "<a style=\"cursor:pointer\" onclick=\"window.open(window.clickTag, '_blank');void(0);\">",
+		"href_stop": "</a>",
+		"top_script": "",
+		"head_script": "",
+		"footer_script": "",
+		"manifets": false
+	},
+	"interia": {
+		"href_start": "<div style=\"cursor:pointer;text-decoration:none;\" id=\"clickTag\" onclick=\"dharmapi.click(param ='clickTag', url ='')\">",
+		"href_stop": "</div>",
+		"top_script": "",
+		"head_script": "",
+		"footer_script": "",
+		"manifest": "interia"
+	}
+}

@@ -8,8 +8,6 @@ node app.js {argument - tytuł}
 
 TO DO:
 - dodawanie pliku manifest.json
-- wyciągnięcie specyfikacji do osobnego pliku json
-
 
 */
 
@@ -25,27 +23,7 @@ var args = process.argv.slice(2);
 
 var title = args[0] ? args[0] : '';
 
-
-
-var specyfikacje = {
-	'gdn': {
-		'href_start': '<a style="cursor:pointer" onclick="window.open(window.clickTag, \'_blank \');void(0);">',
-		'href_stop': '</a>',
-		'top_script': '',
-		'head_script': '',
-		'footer_script': '',
-		'manifets': false
-	},
-	'interia': {
-		'href_start': '<div style="cursor:pointer;text-decoration:none;" id="clickTag" onclick="dharmapi.click(param =\'clickTag\', url =\'\')">',
-		'href_stop': '</div>',
-		'top_script': '',
-		'head_script': '',
-		'footer_script': '',
-		'manifest': 'interia'
-	},
-};
-
+var specyfikacje = require('./specyfikacje/specyfikacje.json');
 
 removeDir();
 
@@ -127,7 +105,7 @@ function changeContent(specka, dir){
 			if(err){
 				console.log(err);
 			}else{
-				console.log('dane '+specka+' / '+addSize[0]+ 'x' + addSize[1] + ' zapisane poprawnie');
+				console.log('utworzono: '+specka+' / '+addSize[0]+ 'x' + addSize[1]);
 			}
 		})
 

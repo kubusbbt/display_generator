@@ -5,10 +5,6 @@ Generator displayów v1.0
 Odpalenie skryptu (terminal):
 node app.js {argument - tytuł}
 
-
-TO DO:
-- dodawanie pliku manifest.json
-
 */
 
 
@@ -21,6 +17,7 @@ const async = require('async')
 // zmienne przekazane do skryptu
 var args = process.argv.slice(2);
 
+// tytuł pobierny ze zmiennej
 var title = args[0] ? args[0] : '';
 
 var specyfikacje = require('./specyfikacje/specyfikacje.json');
@@ -70,7 +67,8 @@ function readDir(specka){
 
 function changeContent(specka, dir){
 
-	var file = 'generator_output/'+specka+'/'+dir+'/index.html'
+	var addDir = 'generator_output/'+specka+'/'+dir+'/';
+	var file = addDir + 'index.html';
 
 	fs.readFile(file, 'utf8', function(err, data){
 
@@ -82,23 +80,25 @@ function changeContent(specka, dir){
 
 		// podmiana tytułu
 		// var str = str.replace(/<title>.*.|<\/title>/g, '<title>'+title+'</title>');
-		var str = str.replace(/<title>.*.|<\/title>/g, '<title>'+specka+'</title>');
+		str = str.replace(/<title>.*.|<\/title>/g, '<title>'+specka+'</title>');
 
 
 		// podmiana click
-		var str = str.replace(/<!-- start href open -->.*.<!-- start href close -->/g, specyfikacje[specka]['href_start'] );
-		var str = str.replace(/<!-- end href open -->.*.<!-- end href close -->/g, specyfikacje[specka]['href_stop'] );
+		str = str.replace(/<!-- start href open -->.*.<!-- start href close -->/g, specyfikacje[specka]['href_start'] );
+		str = str.replace(/<!-- end href open -->.*.<!-- end href close -->/g, specyfikacje[specka]['href_stop'] );
 
 
 		// head-script
-		var str = str.replace(/<!-- head-script -->/g, specyfikacje[specka]['head_script'] );
+		str = str.replace(/<!-- head-script -->/g, specyfikacje[specka]['head_script'] );
 		
 		// top-script
-		var str = str.replace(/<!-- top-script -->/g, specyfikacje[specka]['top_script'] );
+		str = str.replace(/<!-- top-script -->/g, specyfikacje[specka]['top_script'] );
 		
 		// footer-script
-		var str = str.replace(/<!-- footer-script -->/g, specyfikacje[specka]['footer_script'] );
+		str = str.replace(/<!-- footer-script -->/g, specyfikacje[specka]['footer_script'] );
 
+
+		// console.log(str);
 
 		// zapis do pliku
 		fs.writeFile(file, str, function(err, data){
@@ -109,12 +109,33 @@ function changeContent(specka, dir){
 			}
 		})
 
-		// console.log(str);
+
+		// dodanie manifest.json
+		let manifest = specyfikacje[specka]['manifest'];
+		if( manifest !== undefined ){
+
+			// podmiana treści json'a
+			fs.readFile('./specyfikacje/manifests/'+manifest+'.json', 'utf8', function(err, manifestContent){
+				if(err){
+					console.log(err);
+				}else{	
+					manifestContent = manifestContent.replace(/{{title}}/g, title);
+					manifestContent = manifestContent.replace(/{{width}}/g, addSize[0]);
+					manifestContent = manifestContent.replace(/{{height}}/g, addSize[1]);
+
+					// zapis json
+					fs.writeFile(addDir+'manifest.json', manifestContent, function(err, data){
+						if(err){
+							console.log(err);
+						}
+					});
+				}
+			});
+
+		}		
+
 	});
 
 }
-
- 
-
 
 

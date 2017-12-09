@@ -1,0 +1,16 @@
+{
+	"version": "1.0.0",
+	"title": "{{title}}",
+	"description": "Agencja interaktywna",
+	"width" : "{{width}}",
+	"height": "{{height}}",
+	"maxWidth" : "{{width}}",
+	"maxHeight": "{{height}}",
+	"clicktags": {
+		"clickTag": "http://www.interia.pl"
+	},
+	"source": "index.html",
+	"files": [
+		"index.html"
+	]
+}

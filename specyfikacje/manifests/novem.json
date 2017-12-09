@@ -1,0 +1,10 @@
+{
+	"title" : "{{title}}",
+
+	"width" : "{{width}}",
+	"height" : "{{height}}",
+
+	"exits" : {
+		"clickTag" : "tutaj umieść adres strony docelowej"
+	}
+}

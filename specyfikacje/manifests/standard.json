@@ -1,0 +1,10 @@
+{
+	"version": "1.0", 
+	"title": "{{title}}", 
+	"width" : "{{width}}", 
+	"height": "{{height}}", 
+	"clicktags": {
+		"clickTAG": "Strona docelowa"
+	}, 
+	"source": "index.html" 
+}

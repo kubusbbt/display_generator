@@ -1,4 +1,4 @@
-# display_generator
+# node.js display generator
 
 1. Do folderu files wrzucić displaye
 2. W terminalu odpalić skrypt

@@ -8,7 +8,6 @@ node app.js {argument - tytuł}
 */
 
 
-
 const fs = require('fs')
 const fse = require('fs-extra')
 const async = require('async')
@@ -20,7 +19,8 @@ var args = process.argv.slice(2);
 // tytuł pobierny ze zmiennej
 var title = args[0] ? args[0] : '';
 
-var specyfikacje = require('./specyfikacje/specyfikacje.json');
+var specyfikacje = require('./specyfikacje/specyfikacje.js')['specyfikacje'];
+
 
 removeDir();
 
@@ -112,7 +112,7 @@ function changeContent(specka, dir){
 
 		// dodanie manifest.json
 		let manifest = specyfikacje[specka]['manifest'];
-		if( manifest !== undefined ){
+		if( manifest ){
 
 			// podmiana treści json'a
 			fs.readFile('./specyfikacje/manifests/'+manifest+'.json', 'utf8', function(err, manifestContent){
@@ -137,5 +137,3 @@ function changeContent(specka, dir){
 	});
 
 }
-
-

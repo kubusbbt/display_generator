@@ -11,6 +11,7 @@ node app.js {argument - tytuł}
 const fs = require('fs')
 const fse = require('fs-extra')
 const async = require('async')
+const path = require('path');
 
 
 // zmienne przekazane do skryptu
@@ -39,7 +40,7 @@ function removeDir(){
 // skopiowanie katalogu
 function copyDir(){
 	async.forEach(Object.keys(specyfikacje), function(specka, callback){
-		fse.copy('files', 'generator_output/' + specka, function(err){	
+		fse.copy('files', path.resolve('generator_output/'+specka), function(err){	
 			if(err){
 				console.log(err);	
 			}else{

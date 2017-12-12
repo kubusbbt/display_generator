@@ -7,23 +7,40 @@ node app.js {argument - tytuł}
 
 */
 
-
 const fs = require('fs')
 const fse = require('fs-extra')
 const async = require('async')
 const path = require('path');
+
+const readline = require('readline');
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout
+});
+
+var assetPath = path.join(__dirname, 'specyfikacje/');
 
 
 // zmienne przekazane do skryptu
 var args = process.argv.slice(2);
 
 // tytuł pobierny ze zmiennej
-var title = args[0] ? args[0] : '';
+// var title = args[0] ? args[0] : '';
+var title = '';
 
-var specyfikacje = require('./specyfikacje/specyfikacje.js')['specyfikacje'];
+// pytanie o tytuł
+rl.question('Podaj tytuł kampanii: ', (answer) => {
+	title = answer;
+	rl.close();
+
+	removeDir();
+});
 
 
-removeDir();
+const specyfikacje = require('./specyfikacje/specyfikacje.js')['specyfikacje'];
+
+
+
 
 // usunięcie katalogu output
 function removeDir(){
@@ -80,8 +97,7 @@ function changeContent(specka, dir){
 
 
 		// podmiana tytułu
-		// var str = str.replace(/<title>.*.|<\/title>/g, '<title>'+title+'</title>');
-		str = str.replace(/<title>.*.|<\/title>/g, '<title>'+specka+'</title>');
+		var str = str.replace(/<title>.*.|<\/title>/g, '<title>'+title+'</title>');
 
 
 		// podmiana click
@@ -116,7 +132,8 @@ function changeContent(specka, dir){
 		if( manifest ){
 
 			// podmiana treści json'a
-			fs.readFile('./specyfikacje/manifests/'+manifest+'.json', 'utf8', function(err, manifestContent){
+			// fs.readFile('./specyfikacje/manifests/'+manifest+'.json', 'utf8', function(err, manifestContent){
+			fs.readFile(assetPath + 'manifests/'+manifest+'.json', 'utf8', function(err, manifestContent){
 				if(err){
 					console.log(err);
 				}else{	

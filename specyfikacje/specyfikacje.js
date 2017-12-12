@@ -118,7 +118,7 @@ var specyfikacje = {
 				}
 			</script>
 		`,
-		'manifest': false,
+		'manifest': 'adform',
 	},
 
 };

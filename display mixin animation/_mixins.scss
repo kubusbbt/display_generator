@@ -1,0 +1,204 @@
+@mixin scale( $value ){
+	-ms-transform: scale( $value );
+	-webkit-transform: perspective(1px) scale( $value );
+	transform: perspective(1px) scale( $value );
+	
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+
+@mixin transform($x, $y, $rotate, $slide:"", $add_scale:0px) { //$add_scale - w przypadku skalowania dodawanie wartości żeby schowało się poza obszarem
+	@if $slide == 'left'{
+		-webkit-transform: translate($x - $addWidth - $add_scale, $y) rotate($rotate);
+		transform: translate($x - $addWidth - $add_scale, $y) rotate($rotate);
+	}
+	@if $slide == 'right'{
+		-webkit-transform: translate($x + $addWidth + $add_scale, $y) rotate($rotate);
+		transform: translate($x + $addWidth + $add_scale, $y) rotate($rotate);
+	}
+	@if $slide == 'top'{
+		-webkit-transform: translate($x, $y - $addHeight - $add_scale) rotate($rotate);
+		transform: translate($x, $y - $addHeight - $add_scale) rotate($rotate);
+	}
+	@if $slide == 'bottom'{
+		-webkit-transform: translate($x, $y + $addHeight  + $add_scale) rotate($rotate);
+		transform: translate($x, $y + $addHeight  + $add_scale) rotate($rotate);
+	}
+	@if $slide == ''{
+		-webkit-transform: translate($x, $y);
+		transform: translate($x, $y); 
+	} 
+
+	@if $slide != ''{
+		&.active{
+			-webkit-transform: translate($x, $y);
+			transform: translate($x, $y);
+		} 
+	}  
+}
+
+
+@mixin slide($slide:"", $rotate:0deg , $add_scale:0px) {
+	$x:0; $y:0;
+
+	@if $slide == 'left'{
+		-webkit-transform: translate($x - $addWidth - $add_scale, $y) rotate($rotate);
+		transform: translate($x - $addWidth - $add_scale, $y) rotate($rotate);
+	}
+	@if $slide == 'right'{
+		-webkit-transform: translate($x + $addWidth + $add_scale, $y) rotate($rotate);
+		transform: translate($x + $addWidth + $add_scale, $y) rotate($rotate);
+	}
+	@if $slide == 'top'{
+		-webkit-transform: translate($x, $y - $addHeight - $add_scale) rotate($rotate);
+		transform: translate($x, $y - $addHeight - $add_scale) rotate($rotate);
+	}
+	@if $slide == 'bottom'{
+		-webkit-transform: translate($x, $y + $addHeight  + $add_scale) rotate($rotate);
+		transform: translate($x, $y + $addHeight  + $add_scale) rotate($rotate);
+	}
+
+	&.active{
+		-webkit-transform: translate($x, $y);
+		transform: translate($x, $y);
+	} 
+}
+
+
+@mixin transformRotate($x, $y, $z, $d, $rotate) {
+	-webkit-transform: translate($x, $y) rotate($rotate);
+	transform: translate($x, $y) rotate($rotate);
+
+	&.active{
+		-webkit-transform: translate($z, $d);
+		transform: translate($z, $d);  
+	}
+}
+
+
+@mixin animation(
+		$speed: 1s,
+		$delay: 0s, 
+		$loop: infinite, // ilość powtórzeń 1/2/3...infinite
+		$timing: ease, // ease | linear | ease-in | ease-out | ease-in-out | cubic-bezier(n,n,n,n)
+		$class: 'true', // jeśli true div musi posiadać klasę .animate
+		$centerPoint: '50%', // jeśli false usuwa punkt środkowy
+		
+		$startX: 0px, 
+		$centerX: 0px, 
+		$endX: 0px, 
+		
+		$startY: 0px, 
+		$centerY: 0px, 
+		$endY: 0px, 
+		
+		$startRotate: 0deg, 
+		$centerRotate: 0deg, 
+		$endRotate: 0deg, 
+
+		$startScale: 1,
+		$centerScale: 1,
+		$endScale: 1,
+		
+		$startOpacity: 1, 
+		$centerOpacity: 1, 
+		$endOpacity: 1
+	)
+{
+	$name: unique-id();
+
+	-webkit-animation-duration: $speed;
+	animation-duration: $speed;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+
+	-webkit-animation-delay: $delay;
+    animation-delay: $delay;
+
+    -webkit-animation-timing-function: $timing;
+    animation-timing-function: $timing;
+
+	-webkit-animation-iteration-count: $loop;
+	animation-iteration-count: $loop;
+	
+	@if $class == 'false'{
+		-webkit-animation-name: $name;
+		animation-name: $name;
+	}
+
+	&.animate{
+		-webkit-animation-name: $name;
+		animation-name: $name;
+	}
+
+	@-webkit-keyframes #{$name} {
+		from {
+			transform: translate($startX, $startY) rotate($startRotate) scale($startScale);
+			-webkit-transform: translate($startX, $startY) rotate($startRotate) scale($startScale);
+			opacity: $startOpacity;
+		}
+
+		@if $centerPoint != 'false'{
+			#{$centerPoint} {
+				transform: translate($centerX, $centerY) rotate($centerRotate) scale($centerScale);
+				-webkit-transform: translate($centerX, $centerY) rotate($centerRotate) scale($centerScale);
+				opacity: $centerOpacity;
+			}
+		}
+
+		to {
+			transform: translate($endX, $endY) rotate($endRotate) scale($endScale);
+			-webkit-transform: translate($endX, $endY) rotate($endRotate) scale($endScale);
+			opacity: $endOpacity;
+		}
+	}
+	
+	@keyframes #{$name} {
+		from {
+			transform: translate($startX, $startY) rotate($startRotate) scale($startScale);
+			-webkit-transform: translate($startX, $startY) rotate($startRotate) scale($startScale);
+			opacity: $startOpacity;
+		}
+
+		@if $centerPoint != 'false'{
+			#{$centerPoint} {
+				transform: translate($centerX, $centerY) rotate($centerRotate) scale($centerScale);
+				-webkit-transform: translate($centerX, $centerY) rotate($centerRotate) scale($centerScale);
+				opacity: $centerOpacity;
+			}
+		}
+
+		to {
+			transform: translate($endX, $endY) rotate($endRotate) scale($endScale);
+			-webkit-transform: translate($endX, $endY) rotate($endRotate) scale($endScale);
+			opacity: $endOpacity;
+		}
+	}
+}
+
+
+
+
+
+//przykładowa animacja
+// animation-duration: 1s;
+// animation-fill-mode: both;
+// animation-delay: 0s;
+// animation-timing-function: ease;
+// animation-iteration-count: infinite;
+// animation-name: anim;
+
+// @keyframes anim {
+// 	from {
+// 		// transform: translate($startX, $startY) rotate($startRotate) scale($startScale);
+// 	}
+
+// 	50% {
+// 		// transform: translate($centerX, $centerY) rotate($centerRotate) scale($centerScale);
+// 	}
+
+// 	to {
+// 		// transform: translate($endX, $endY) rotate($endRotate) scale($endScale);
+// 	}
+// }

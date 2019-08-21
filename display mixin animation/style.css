@@ -1,0 +1,118 @@
+.nota-btn {
+  bottom: 5px;
+  left: 5px; }
+
+.logo {
+  top: 1px;
+  left: 1px; }
+
+#ribbon {
+  top: 64px;
+  right: 0px; }
+
+#head {
+  top: 140px;
+  left: 22px;
+  transition: .8s all;
+  -webkit-transform: translate(-300px, 0) rotate(0deg);
+  -ms-transform: translate(-300px, 0) rotate(0deg);
+  transform: translate(-300px, 0) rotate(0deg); }
+  #head.active {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0); }
+
+#subhead {
+  top: 247px;
+  left: 27px;
+  transition: .8s all;
+  -webkit-transform: translate(300px, 0) rotate(0deg);
+  -ms-transform: translate(300px, 0) rotate(0deg);
+  transform: translate(300px, 0) rotate(0deg); }
+  #subhead.active {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0); }
+
+.btn {
+  top: 377px;
+  left: 52px; }
+
+#bullety {
+  top: 123px;
+  left: 85px;
+  transition: .8s all;
+  -webkit-transform: translate(0, -600px) rotate(0deg);
+  -ms-transform: translate(0, -600px) rotate(0deg);
+  transform: translate(0, -600px) rotate(0deg); }
+  #bullety.active {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0); }
+
+#man img {
+  bottom: 0px;
+  right: 0px; }
+
+::-webkit-scrollbar {
+  width: 7px;
+  /* for vertical scrollbars */
+  height: 7px;
+  /* for horizontal scrollbars */ }
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); }
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2); }
+
+.nota {
+  font-family: arial;
+  color: #000;
+  background-color: #fff;
+  font-size: 10px;
+  width: 298px;
+  z-index: 2;
+  position: absolute;
+  padding: 10px 20px 10px 10px;
+  box-sizing: border-box;
+  z-index: 9000;
+  left: 1px;
+  bottom: 1px; }
+
+.nota-btn {
+  position: absolute;
+  font-family: arial;
+  color: #fff;
+  font-size: 8px;
+  cursor: pointer;
+  z-index: 8000;
+  letter-spacing: 0.4px;
+  text-shadow: -1px 2px 1px black; }
+
+.container {
+  position: relative;
+  width: 300px;
+  height: 600px;
+  background-color: #F9B218;
+  overflow: hidden;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+  .container:after {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 999;
+    content: '';
+    display: block;
+    width: 300px;
+    height: 600px;
+    -webkit-box-shadow: inset 0px 0px 0px 1px #000;
+    -moz-box-shadow: inset 0px 0px 0px 1px #000;
+    box-shadow: inset 0px 0px 0px 1px #000; }
+
+a img {
+  border: 0px; }
+
+.logo, #ribbon, #head, #subhead, .btn, #bullety, #man img {
+  position: absolute; }

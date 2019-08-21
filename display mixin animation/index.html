@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title></title>
+	<!-- addSize -->
+	<link rel="stylesheet" href="style.css">
+	<!-- head-script -->
+</head>
+<body>
+
+<style type="text/css">
+	html, body {
+	  margin: 0px;
+	  padding: 0px;
+	}
+ </style> 
+
+<!-- top-script -->
+
+
+<!-- start href open --><a style="cursor:pointer" onclick="window.open(window.clickTag, '_blank ');void(0);"><!-- start href close -->
+	<div class="container">
+
+		<div class="logo"><img src="img/logo.png" alt=""></div>
+		
+		<div id="ribbon"><img src="img/ribbon.png" alt=""></div>
+		
+		<div id="head"><img src="img/head.png" alt=""></div>
+
+		<div id="subhead"><img src="img/subhead.png" alt=""></div>
+
+		<div class="btn"><img id="btn" class="pulse infinite" src="img/btn.png" alt=""></div>
+
+		<div id="bullety"><img src="img/bullety.png" alt=""></div>
+		
+		<div id="man"><img src="img/man.jpg" alt=""></div>
+
+		<div onmouseover="_show()" onmouseout="_hide()" class="nota-btn">Informacje prawne - zapoznaj się</div>
+		<div onmouseover="_show()" onmouseout="_hide()" id="nota" class="nota">
+			<span>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur eum placeat aliquid, quae unde nesciunt dignissimos dolor aliquam eligendi at.
+			</span>
+		</div>	
+	</div>	
+<!-- end href open --></a><!-- end href close -->
+
+<!-- footer-script -->
+
+<script>
+//nota prawna
+document.getElementById("nota").style.visibility = "hidden";
+function _show() {document.getElementById("nota").style.visibility = "visible"; }
+function _hide() {document.getElementById("nota").style.visibility = "hidden"; }
+
+// animacje
+function show(Elementid){return document.getElementById( Elementid ).classList.add('active'); }
+function hide(Elementid){return document.getElementById( Elementid ).classList.remove('active'); }
+function addClass(ElementClassOrId, klasa){var element = document.querySelectorAll(ElementClassOrId); [].forEach.call(element, function(field){field.classList.add(klasa); }); }
+function removeClass(ElementClassOrId, klasa){var element = document.querySelectorAll(ElementClassOrId); [].forEach.call(element, function(field){field.classList.remove(klasa); }); }
+function develop(element, Elementclass){i = 0; while (i < document.getElementsByTagName(element).length) {document.getElementsByTagName(element)[i].classList.add(Elementclass); i++; } }
+
+
+var loop = 0;
+var loop_lenth = 0; // ilość powtórzeń animacji 0 = infinite
+function timeout() {
+	var time = 0;
+	function delay(delay){time += delay}
+	function first(){if(loop == 0){return true; }else{return false; } } // if( first() )
+	function last(){if(loop == loop_lenth - 1){return true; }else{return false; } } // if( last() )
+	
+	/*******start timeline******/
+
+
+	setTimeout(function(){
+		show('head');
+		show('subhead');
+	}, time);
+
+	delay(9000);
+
+	setTimeout(function(){
+		hide('head');
+		hide('subhead');
+		show('bullety');
+	}, time);
+
+	delay(4500);
+
+	setTimeout(function(){
+		hide('bullety');
+	}, time);
+
+	delay(100);
+	
+	/*******end timeline******/
+
+	setTimeout(function(){loop ++;if(loop_lenth == 0 || loop < loop_lenth){timeout();}}, time)
+	// console.log('animate time: '+time+'ms');
+}
+timeout();
+
+
+// addClass('div', 'active');
+
+
+</script>
+
+
+
+
+</body>
+</html>

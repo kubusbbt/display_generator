@@ -1,0 +1,59 @@
+$addWidth: 300px;
+$addHeight: 600px;
+
+@import '_mixins';
+
+.container {
+	// background-image: url(img/bg.jpg);
+}
+
+.nota-btn {
+	bottom: 5px;
+	left: 5px;
+	// transform: rotate(90deg);
+}
+
+
+.logo{
+	top: 1px;
+	left: 1px;
+}
+
+#ribbon{
+	top: 64px;
+	right: 0px;
+}
+
+#head{
+	top: 140px;
+	left: 22px;
+
+	transition: .8s all;
+	@include slide('left');
+}
+
+#subhead{
+	top: 247px;
+	left: 27px;
+
+	transition: .8s all;
+	@include slide('right');
+}
+
+.btn {
+	top: 377px;
+	left: 52px;
+}
+
+#bullety{
+	top: 123px;
+	left: 85px;
+
+	transition: .8s all;
+	@include slide('top');
+}
+
+#man img{
+	bottom: 0px;
+	right: 0px;
+}

@@ -1,9 +1,13 @@
 var specyfikacje = {
 	
 	'gdn': {
-		'href_start': '<a style="cursor:pointer" onclick="window.open(window.clickTag, \'_blank \');void(0);">',
-		'href_stop': '</a>',
-		'top_script': '',
+		'href_start': '<div style="cursor:pointer" onclick="window.open(window.clickTag, \'_blank \');void(0);">',
+		'href_stop': '</div>',
+		'top_script': `
+			<script>
+				var clickTag = '{{clickTagUrl}}';
+			</script>
+		`,
 		'head_script': '',
 		'footer_script': '',
 		'manifets': false
@@ -12,8 +16,8 @@ var specyfikacje = {
 
 	// taka sama co gdn
 	'bankier': {
-		'href_start': '<a style="cursor:pointer" onclick="window.open(window.clickTag, \'_blank \');void(0);">',
-		'href_stop': '</a>',
+		'href_start': '<div style="cursor:pointer" onclick="window.open(window.clickTag, \'_blank \');void(0);">',
+		'href_stop': '</div>',
 		'top_script': '',
 		'head_script': '',
 		'footer_script': '',
@@ -22,8 +26,8 @@ var specyfikacje = {
 
 
 	'standard': {
-		'href_start': '<a style="text-decoration:none" href="" id="clickTag">',
-		'href_stop': '</a>',
+		'href_start': '<div style="text-decoration:none" href="" id="clickTag">',
+		'href_stop': '</div>',
 		'top_script': '',
 		'head_script': `
 			<link type="text/css" rel="stylesheet" href="http://static.clickonometrics.pl/html5.css" />
@@ -71,7 +75,11 @@ var specyfikacje = {
 	'wp': {
 		'href_start': `<div style="cursor:pointer" onclick="window.open(window.clickTag, '_blank')">`,
 		'href_stop': '</div>',
-		'top_script': '',
+		'top_script': `
+			<script>
+				var clickTag = '{{clickTagUrl}}';
+			</script>
+		`,
 		'head_script': '',
 		'footer_script': '',
 		'manifest': false,

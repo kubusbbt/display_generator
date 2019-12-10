@@ -28,13 +28,24 @@ var args = process.argv.slice(2);
 // var title = args[0] ? args[0] : '';
 var title = '';
 
+var clickTagUrl = '';
+
 // pytanie o tytuł
 rl.question('Podaj tytuł kampanii: ', (answer) => {
 	title = answer;
-	rl.close();
+	// rl.close();
+	// removeDir();
 
-	removeDir();
+
+	// pytanie o clickTagUrl
+	rl.question('Podaj url clickTag: ', (answer) => {
+		clickTagUrl = answer;
+		rl.close();
+		removeDir();
+	});
 });
+
+
 
 
 const specyfikacje = require('./specyfikacje/specyfikacje.js')['specyfikacje'];
@@ -110,6 +121,9 @@ function changeContent(specka, dir){
 		
 		// top-script
 		str = str.replace(/<!-- top-script -->/g, specyfikacje[specka]['top_script'] );
+
+		// top-script clickTagUrl
+		str = str.replace(/{{clickTagUrl}}/g, clickTagUrl );
 		
 		// footer-script
 		str = str.replace(/<!-- footer-script -->/g, specyfikacje[specka]['footer_script'] );

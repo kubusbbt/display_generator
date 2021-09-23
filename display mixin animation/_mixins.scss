@@ -76,6 +76,26 @@
 	}
 }
 
+@mixin pulse($scale: .9, $speed: 1s, $delay: 0) {
+	animation-duration: $speed;
+	animation-fill-mode: both;
+    animation-delay: $delay;
+    animation-timing-function: ease;
+	animation-iteration-count: infinite;
+	animation-name: pulse;
+
+	@keyframes pulse {
+		from {
+			transform: scale(1);
+		}
+		50% {
+			transform: scale($scale);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+}
 
 @mixin animation(
 		$speed: 1s,
